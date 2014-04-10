@@ -15,4 +15,11 @@
 	$locale = $pte->get_locale();
 
 ?>
-<h1><?php _e( 'Superman.', $locale ); ?></h1>
+<div id="primary" class="site-content">
+	<div id="content" role="main">
+		<div class="entry-content">
+			dev:
+			<?php the_content(); ?>
+		</div>
+	</div>
+</div>

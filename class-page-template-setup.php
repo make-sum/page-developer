@@ -96,9 +96,6 @@ class Page_Template_Plugin {
 			'full-wide.php' => __( 'Full Wide', $this->plugin_slug )
 		);
 
-		// adding support for theme templates to be merged and shown in dropdown
-		$templates = wp_get_theme()->get_page_templates();
-		$templates = array_merge( $templates, $this->templates );
 
 	} // end constructor
 
@@ -133,6 +130,7 @@ class Page_Template_Plugin {
 
 		// Retrieve the cache list. If it doesn't exist, or it's empty prepare an array
 		$templates = wp_get_theme()->get_page_templates();
+		$templates = array_merge( $templates, $this->templates );
 		if ( empty( $templates ) ) {
 			$templates = array();
 		} // end if
@@ -177,10 +175,7 @@ class Page_Template_Plugin {
 
 	} // end view_project_template
 
-	/*--------------------------------------------*
-	 * deactivate the plugin
-	*---------------------------------------------*/
-	static function deactivate( $network_wide ) {
+	public function deactivate( $network_wide ) {
 		foreach($this as $value) {
 			page-developer::delete_template( $value );
 		}
